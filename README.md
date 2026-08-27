@@ -133,20 +133,3 @@ npm run lint
 
 ---
 
-## 🚢 Deployment
-
-The live site is deployed at **[architect.jeremiahdelacruz.com](https://architect.jeremiahdelacruz.com/)**.
-
-To deploy your own instance via [Vercel](https://vercel.com/new):
-
-1. Push your code to GitHub
-2. Import the repository on Vercel
-3. Vercel auto-detects Next.js — no configuration needed
-
-See the [Next.js deployment docs](https://nextjs.org/docs/app/building-your-application/deploying) for other options.
-
----
-
-## 📄 License
-
-This project is for portfolio purposes. Feel free to use it as a reference or template for your own work.
