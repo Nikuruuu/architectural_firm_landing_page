@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -53,7 +54,7 @@ function Projects() {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <section id="projects" className="bg-[#111111] py-24">
+    <section id="projects" className="bg-[#111111] py-24 scroll-mt-20">
       <div className="mx-auto max-w-360 px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -104,6 +105,10 @@ function Projects() {
                 key={project.id}
                 className={`group relative cursor-pointer overflow-hidden ${spanClass}`}
               >
+                <Link href="#contact" className="absolute inset-0 z-20">
+                  <span className="sr-only">Discuss {project.title}</span>
+                </Link>
+
                 {/* Image with grayscale → color on hover */}
                 <Image
                   src={project.image}
@@ -134,9 +139,10 @@ function Projects() {
           <Button
             variant="cta"
             size="lg"
+            asChild
             className="rounded-none border-neutral-500 text-white hover:bg-white hover:text-black text-xs font-bold uppercase tracking-widest px-12"
           >
-            View All Projects
+            <a href="#contact">Start Your Project</a>
           </Button>
         </div>
       </div>

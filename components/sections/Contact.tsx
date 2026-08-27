@@ -20,7 +20,7 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="relative bg-[#1a1a1a] py-24 overflow-hidden"
+      className="relative overflow-hidden bg-[#1a1a1a] py-24 scroll-mt-20"
     >
       {/* Large Background Text */}
       <div className="absolute inset-0 flex items-start justify-center pointer-events-none select-none">

@@ -34,7 +34,7 @@ const methods = [
 
 function Methodology() {
   return (
-    <section id="methodology" className="bg-[#f8f8f8] py-24 lg:py-32">
+    <section id="methodology" className="bg-[#f8f8f8] py-24 lg:py-32 scroll-mt-20">
       <div className="mx-auto max-w-360 px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex h-50 flex-col justify-center border-b border-neutral-200 p-8 lg:p-12">

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Logo } from "./Logo";
@@ -18,20 +20,49 @@ import {
 } from "@/components/ui/sheet";
 
 const navLinks = [
-  { href: "#services", label: "Services" },
-  { href: "#projects", label: "Projects" },
-  { href: "#about", label: "About Us" },
-  { href: "#methodology", label: "Methodology" },
+  { href: "#services", label: "SERVICES", sectionId: "services" },
+  { href: "#projects", label: "PROJECTS", sectionId: "projects" },
+  { href: "#about", label: "ABOUT US", sectionId: "about" },
+  { href: "#methodology", label: "METHODOLOGY", sectionId: "methodology" },
+  { href: "#contact", label: "CONTACT", sectionId: "contact" },
 ];
 
 function Navbar() {
+  const [activeSection, setActiveSection] = useState("top");
+
+  useEffect(() => {
+    const sectionIds = ["top", ...navLinks.map((link) => link.sectionId)];
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSection = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) => b.intersectionRatio - a.intersectionRatio,
+          )[0];
+
+        if (visibleSection?.target.id) {
+          setActiveSection(visibleSection.target.id);
+        }
+      },
+      { rootMargin: "-35% 0px -50% 0px", threshold: [0.15, 0.3, 0.6] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-xl supports-backdrop-filter:bg-background/70">
-      <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/70 bg-background/85 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
+        <Link href="#top" className="flex items-center">
           <Logo
-            width={32}
-            height={32}
+            width={40}
+            height={40}
             className="transition-opacity hover:opacity-80"
           />
         </Link>
@@ -44,7 +75,19 @@ function Navbar() {
                   asChild
                   className={`${navigationMenuTriggerStyle()} rounded-none bg-transparent px-3 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-foreground/75 transition-colors hover:bg-transparent hover:text-foreground`}
                 >
-                  <Link href={link.href}>{link.label}</Link>
+                  <Link
+                    href={link.href}
+                    aria-current={
+                      activeSection === link.sectionId ? "page" : undefined
+                    }
+                    className={
+                      activeSection === link.sectionId
+                        ? "text-primary"
+                        : undefined
+                    }
+                  >
+                    {link.label}
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
@@ -52,12 +95,7 @@ function Navbar() {
         </NavigationMenu>
 
         <div className="hidden md:flex">
-          <Button
-            variant="cta"
-            size="sm"
-            asChild
-            className="min-w-36 border-foreground/80 px-5 text-[0.72rem] font-semibold uppercase tracking-[0.18em]"
-          >
+          <Button variant="cta" asChild>
             <Link href="#contact">Let&apos;s Talk</Link>
           </Button>
         </div>
@@ -89,16 +127,14 @@ function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="border-b border-border/50 pb-4 text-2xl font-semibold uppercase tracking-[0.14em] transition-colors hover:text-primary"
+                    className={`text-lg font-semibold tracking-wide transition-colors hover:text-primary/70 ${
+                      activeSection === link.sectionId ? "text-primary" : ""
+                    }`}
                   >
                     {link.label}
                   </Link>
                 ))}
-                <Button
-                  variant="cta"
-                  asChild
-                  className="mt-6 w-full border-foreground/80 text-sm font-semibold uppercase tracking-[0.18em]"
-                >
+                <Button variant="cta" asChild className="mt-4 w-full">
                   <Link href="#contact">Let&apos;s Talk</Link>
                 </Button>
               </div>
