@@ -35,15 +35,13 @@ function Contact() {
           <div className="flex flex-col justify-between gap-12">
             {/* Heading */}
             <div>
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-neutral-500">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-neutral-500">
                 [05] Start a Project
               </p>
-              <h2 className="-tracking-[0.04em] text-5xl sm:text-6xl lg:text-7xl font-black uppercase italic leading-[0.95] text-white">
+              <h2 className="text-4xl font-black uppercase italic tracking-tighter text-white sm:text-5xl lg:text-6xl">
                 Let&apos;s Build
                 <br />
-                Something
-                <br />
-                Iconic.
+                Something Iconic
               </h2>
             </div>
 

@@ -47,7 +47,9 @@ export const Logo: React.FC<LogoProps> = ({
           </g>
         </g>
       </svg>
-      <span className="text-2xl font-black tracking-tight">ARCHITECTURA</span>
+      <span className="text-lg font-black tracking-[0.18em] sm:text-xl">
+        ARCHITECTURA
+      </span>
     </div>
   );
 };
