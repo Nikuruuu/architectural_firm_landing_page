@@ -37,11 +37,11 @@ function Methodology() {
     <section id="methodology" className="bg-[#f8f8f8] py-24 lg:py-32">
       <div className="mx-auto max-w-360 px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="h-50 border-b border-neutral-200 p-8 lg:p-12 flex flex-col justify-center">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">
+        <div className="flex h-50 flex-col justify-center border-b border-neutral-200 p-8 lg:p-12">
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
             [04] Methodology
           </p>
-          <h2 className="text-4xl font-black italic tracking-tighter text-foreground sm:text-5xl lg:text-6xl">
+          <h2 className="text-4xl font-black uppercase italic tracking-tighter text-foreground sm:text-5xl lg:text-6xl">
             How We Build
           </h2>
         </div>
