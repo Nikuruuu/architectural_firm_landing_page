@@ -11,7 +11,7 @@ const stats = [
 
 function AboutUs() {
   return (
-    <section id="about" className="bg-white py-24 lg:py-32">
+    <section id="about" className="bg-white py-24 lg:py-32 scroll-mt-20">
       <div className="mx-auto max-w-360 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Left Column — Text Content */}
@@ -62,10 +62,10 @@ function AboutUs() {
 
             {/* CTA Link */}
             <Link
-              href="/team"
+              href="#contact"
               className="group/link mt-10 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-foreground transition-colors hover:text-neutral-500"
             >
-              Meet the Team
+              Start a Project
               <ArrowRight className="size-4 transition-transform duration-300 group-hover/link:translate-x-1" />
             </Link>
           </div>

@@ -10,7 +10,7 @@ const services = [
     description:
       "Bespoke living spaces that harmonize with their surroundings. We design homes that are both sanctuaries and statements.",
     items: ["Private Villas", "Apartment Complexes", "Interior Renovations"],
-    href: "/services/residential",
+    href: "#contact",
   },
   {
     number: "02",
@@ -18,7 +18,7 @@ const services = [
     description:
       "Workspaces that inspire productivity and collaboration. Innovative designs for offices, retail, and hospitality.",
     items: ["Corporate HQs", "Retail Flagships", "Boutique Hotels"],
-    href: "/services/commercial",
+    href: "#contact",
   },
   {
     number: "03",
@@ -26,13 +26,13 @@ const services = [
     description:
       "Shaping the future of cities. Sustainable, community-focused master planning for large-scale developments.",
     items: ["Master Planning", "Landscape Design", "Public Spaces"],
-    href: "/services/urban-planning",
+    href: "#contact",
   },
 ];
 
 function Services() {
   return (
-    <section id="services" className="bg-[#f8f8f8] py-24">
+    <section id="services" className="bg-[#f8f8f8] py-24 scroll-mt-20">
       <div className="mx-auto max-w-360 px-4 sm:px-6 lg:px-8">
         {/* Main Grid Container - This creates the continuous vertical lines */}
         <div className="grid grid-cols-1 md:grid-cols-3 md:divide-x divide-y md:divide-y-0 divide-neutral-200 border-y border-neutral-200">
@@ -53,7 +53,7 @@ function Services() {
             <div className="p-8 lg:p-12 grow hover:bg-white transition-colors duration-500">
               <Link
                 href={services[0].href}
-                className="absolute inset-0 z-10 hidden md:block"
+                className="absolute inset-0 z-10"
               >
                 <span className="sr-only">Explore</span>
               </Link>
@@ -102,7 +102,7 @@ function Services() {
             <div className="p-8 lg:p-12 grow hover:bg-white transition-colors duration-500">
               <Link
                 href={services[1].href}
-                className="absolute inset-0 z-10 hidden md:block"
+                className="absolute inset-0 z-10"
               >
                 <span className="sr-only">Explore</span>
               </Link>
@@ -147,10 +147,10 @@ function Services() {
             {/* Link Header Space */}
             <div className="h-50 border-b border-neutral-200 p-8 lg:p-12 flex items-center justify-start md:justify-end">
               <Link
-                href="/services"
-                className="relative z-20 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-foreground hover:text-primary transition-colors"
+                href="#contact"
+                className="relative z-20 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-foreground transition-colors hover:text-primary"
               >
-                Full Service List <ArrowRight className="size-4" />
+                Start a Project <ArrowRight className="size-4" />
               </Link>
             </div>
 
@@ -158,7 +158,7 @@ function Services() {
             <div className="p-8 lg:p-12 grow hover:bg-white transition-colors duration-500">
               <Link
                 href={services[2].href}
-                className="absolute inset-0 z-10 hidden md:block"
+                className="absolute inset-0 z-10"
               >
                 <span className="sr-only">Explore</span>
               </Link>

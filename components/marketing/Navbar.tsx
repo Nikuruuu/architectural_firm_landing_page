@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Logo } from "./Logo";
@@ -18,22 +20,51 @@ import {
 } from "@/components/ui/sheet";
 
 const navLinks = [
-  { href: "/services", label: "SERVICES" },
-  { href: "/projects", label: "PROJECTS" },
-  { href: "/aboutUs", label: "ABOUT US" },
-  { href: "/methodology", label: "METHODOLOGY" },
+  { href: "#services", label: "SERVICES", sectionId: "services" },
+  { href: "#projects", label: "PROJECTS", sectionId: "projects" },
+  { href: "#about", label: "ABOUT US", sectionId: "about" },
+  { href: "#methodology", label: "METHODOLOGY", sectionId: "methodology" },
+  { href: "#contact", label: "CONTACT", sectionId: "contact" },
 ];
 
 function Navbar() {
+  const [activeSection, setActiveSection] = useState("top");
+
+  useEffect(() => {
+    const sectionIds = ["top", ...navLinks.map((link) => link.sectionId)];
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSection = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) => b.intersectionRatio - a.intersectionRatio,
+          )[0];
+
+        if (visibleSection?.target.id) {
+          setActiveSection(visibleSection.target.id);
+        }
+      },
+      { rootMargin: "-35% 0px -50% 0px", threshold: [0.15, 0.3, 0.6] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/70 bg-background/85 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
         {/* Logo - Left */}
-        <Link href="/" className="flex items-center">
+        <Link href="#top" className="flex items-center">
           <Logo
             width={40}
             height={40}
-            className="hover:opacity-80 transition-opacity"
+            className="transition-opacity hover:opacity-80"
           />
         </Link>
 
@@ -46,7 +77,19 @@ function Navbar() {
                   asChild
                   className={navigationMenuTriggerStyle()}
                 >
-                  <Link href={link.href}>{link.label}</Link>
+                  <Link
+                    href={link.href}
+                    aria-current={
+                      activeSection === link.sectionId ? "page" : undefined
+                    }
+                    className={
+                      activeSection === link.sectionId
+                        ? "text-primary"
+                        : undefined
+                    }
+                  >
+                    {link.label}
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
@@ -56,7 +99,7 @@ function Navbar() {
         {/* CTA Button - Right (Desktop) */}
         <div className="hidden md:flex">
           <Button variant="cta" asChild>
-            <Link href="/contact">Let&apos;s Talk</Link>
+            <Link href="#contact">Let&apos;s Talk</Link>
           </Button>
         </div>
 
@@ -76,13 +119,15 @@ function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-lg font-semibold tracking-wide transition-colors hover:text-primary/70"
+                    className={`text-lg font-semibold tracking-wide transition-colors hover:text-primary/70 ${
+                      activeSection === link.sectionId ? "text-primary" : ""
+                    }`}
                   >
                     {link.label}
                   </Link>
                 ))}
                 <Button variant="cta" asChild className="mt-4 w-full">
-                  <Link href="/contact">Let&apos;s Talk</Link>
+                  <Link href="#contact">Let&apos;s Talk</Link>
                 </Button>
               </div>
             </SheetContent>
