@@ -59,7 +59,6 @@ function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/70 bg-background/85 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
-        {/* Logo - Left */}
         <Link href="#top" className="flex items-center">
           <Logo
             width={40}
@@ -68,14 +67,13 @@ function Navbar() {
           />
         </Link>
 
-        {/* Navigation Links - Middle (Desktop) */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
             {navLinks.map((link) => (
               <NavigationMenuItem key={link.href}>
                 <NavigationMenuLink
                   asChild
-                  className={navigationMenuTriggerStyle()}
+                  className={`${navigationMenuTriggerStyle()} rounded-none bg-transparent px-3 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-foreground/75 transition-colors hover:bg-transparent hover:text-foreground`}
                 >
                   <Link
                     href={link.href}
@@ -96,25 +94,35 @@ function Navbar() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        {/* CTA Button - Right (Desktop) */}
         <div className="hidden md:flex">
           <Button variant="cta" asChild>
             <Link href="#contact">Let&apos;s Talk</Link>
           </Button>
         </div>
 
-        {/* Mobile Menu */}
         <div className="flex md:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="size-10 rounded-none border border-border/70 bg-background/80"
+              >
                 <Menu className="size-5" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-72">
+            <SheetContent
+              side="right"
+              className="w-[min(88vw,22rem)] border-l border-border/70 px-6 py-6 shadow-2xl"
+            >
               <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-              <div className="flex flex-col gap-6 pt-8">
+              <div className="flex flex-col gap-3 pt-12">
+                <div className="mb-3">
+                  <div className="text-xs font-medium uppercase tracking-[0.28em] text-muted-foreground">
+                    Explore
+                  </div>
+                </div>
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}

@@ -40,12 +40,13 @@ function Services() {
           <div className="flex flex-col group relative">
             {/* Header Area (Top Half) - The border-b creates the continuous horizontal line */}
             <div className="h-50 border-b border-neutral-200 p-8 lg:p-12 flex flex-col justify-center">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
                 [01] Expertise
               </p>
-              {/* Using whitespace-nowrap allows the big text to cross the grid line if needed, just like the image */}
-              <h2 className="text-5xl font-black uppercase tracking-tighter text-foreground whitespace-nowrap">
-                Our Services
+              <h2 className="text-4xl font-black uppercase italic tracking-tighter text-foreground sm:text-5xl lg:text-6xl">
+                Our
+                <br />
+                Services
               </h2>
             </div>
 
